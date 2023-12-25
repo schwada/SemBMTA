@@ -20,10 +20,10 @@ class CreateReminderActivity : AppCompatActivity() {
 
     private lateinit var createReminderViewModel: CreateReminderViewModel
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.top_menu, menu)
+//        return true
+//    }
 
     lateinit var pickTimeBtn: TextView;
     lateinit var pickDateBtn: TextView;
