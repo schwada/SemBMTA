@@ -1,4 +1,4 @@
-package com.schwada.myapplication.ui.dashboard
+package com.schwada.reminderapp.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

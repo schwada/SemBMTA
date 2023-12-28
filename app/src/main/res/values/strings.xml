@@ -1,5 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Reminders</string>
     <string name="title_home">Active</string>
     <string name="title_dashboard">Archive</string>
+    <string name="title_create">Create Reminder</string>
+    <string name="reminderSaveBtn">Save</string>
+    <string name="ReminderNameLabel">Name</string>
+    <string name="ReminderTimeHint">Enter Time</string>
+    <string name="ReminderDateHint">Enter Date</string>
+    <string name="ReminderDescLabel">Description</string>
+    <string name="ReminderTimeLabel">Time:</string>
+    <string name="ReminderDateLabel">Date:</string>
+    <string name="ReminderRadioAlarm">Alarm</string>
+    <string name="ReminderRadioNotification">Notification</string>
+    <string name="ReminderRadioNofify">Notify using:</string>
+    <string name="ReminderFieldMissing">Field cannot be empty</string>
+    <string name="ReminderError">Something went wrong</string>
+    <string name="ReminderErrorDatePast">Date cannot be in the past</string>
+    <string name="ReminderErrorDateMissing">The date is either missing, or incorrect</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.schwada.myapplication
+package com.schwada.reminderapp
 
 import org.junit.Test
 

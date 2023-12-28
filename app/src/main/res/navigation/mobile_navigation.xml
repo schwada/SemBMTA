@@ -6,12 +6,17 @@
     app:startDestination="@+id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.schwada.myapplication.ui.home.HomeFragment"
+        android:name="com.schwada.reminderapp.ui.reminders_active.RemindersActiveFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_reminders_active" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.schwada.myapplication.ui.dashboard.DashboardFragment"
+        android:name="com.schwada.reminderapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <activity
+        android:id="@+id/createReminderActivity"
+        android:name="com.schwada.reminderapp.ui.create.CreateReminderActivity"
+        android:label="title_create">
+    </activity>
 </navigation>

@@ -33,7 +33,7 @@
             android:layout_weight="0.5">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/descriptionLabal"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
@@ -44,10 +44,10 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+                app:layout_constraintTop_toBottomOf="@+id/nameTextField" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/nameLabel"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
                 tools:ignore="MissingConstraints" />
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/nameTextField"
                 android:layout_width="0dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="16dp"
@@ -73,10 +73,10 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/descTextField"
                 android:layout_width="0dp"
                 android:layout_height="75dp"
                 android:layout_marginStart="16dp"
@@ -89,7 +89,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionLabal" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -98,7 +98,7 @@
             android:layout_weight="0.5">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/timeLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextTime"
+                android:id="@+id/timeTextField"
                 android:layout_width="0dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="16dp"
@@ -124,10 +124,10 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/timeLabel" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/dateTextField"
                 android:layout_width="0dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="16dp"
@@ -140,10 +140,10 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/dateLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -153,9 +153,10 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+                app:layout_constraintTop_toBottomOf="@+id/timeTextField" />
 
             <RadioGroup
+                android:id="@+id/notifyRadioGroup"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="16dp"
@@ -164,10 +165,10 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDate">
+                app:layout_constraintTop_toBottomOf="@+id/dateTextField">
 
                 <RadioButton
-                    android:id="@+id/radio_ninjas"
+                    android:id="@+id/notifyAlarmRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
@@ -175,10 +176,10 @@
                     android:textSize="12sp" />
 
                 <RadioButton
-                    android:id="@+id/radio_pirates"
+                    android:id="@+id/notifyNofiticationRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notify"
+                    android:text="Notification"
                     android:textSize="12sp" />
 
             </RadioGroup>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Připomínky</string>
+    <string name="title_home">Aktvní</string>
+    <string name="title_dashboard">Archiv</string>
+    <string name="title_create">Nová připomínka</string>
+    <string name="reminderSaveBtn">Uložit</string>
+    <string name="ReminderNameLabel">Jméno</string>
+    <string name="ReminderTimeHint">Vyberte Čas</string>
+    <string name="ReminderDateHint">Vyberte datum</string>
+    <string name="ReminderDescLabel">Popis:</string>
+    <string name="ReminderTimeLabel">Čas:</string>
+    <string name="ReminderDateLabel">Datum:</string>
+    <string name="ReminderRadioAlarm">Alarm</string>
+    <string name="ReminderRadioNotification">Notifikace</string>
+    <string name="ReminderRadioNofify">Typ upozornění:</string>
+    <string name="ReminderFieldMissing">Pole nemůže být prázdné</string>
+    <string name="ReminderError">Něco se pokazilo</string>
+    <string name="ReminderErrorDatePast">Čas nemůže být v minulost</string>
+    <string name="ReminderErrorDateMissing">Zadaný čas je buď nesprávný nebo chybí</string>
+</resources>

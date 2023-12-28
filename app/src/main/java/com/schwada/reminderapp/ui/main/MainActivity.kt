@@ -1,4 +1,4 @@
-package com.schwada.myapplication.ui.main
+package com.schwada.reminderapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.schwada.myapplication.R
-import com.schwada.myapplication.databinding.ActivityMainBinding
-import com.schwada.myapplication.ui.create.CreateReminderActivity
+import com.schwada.reminderapp.R
+import com.schwada.reminderapp.databinding.ActivityMainBinding
+import com.schwada.reminderapp.ui.create.CreateReminderActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         val createNewButton: Button = findViewById(R.id.btn_createnew)
         createNewButton.setOnClickListener {
-            startActivity(Intent(this, CreateReminderActivity::class.java))
+            navController.navigate(R.id.createReminderActivity);
         }
+
+
     }
 }
