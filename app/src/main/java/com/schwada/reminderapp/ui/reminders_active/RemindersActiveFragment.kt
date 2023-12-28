@@ -20,6 +20,11 @@ class RemindersActiveFragment : Fragment() {
     private var _binding: FragmentRemindersActiveBinding? = null
     private val binding get() = _binding!!
 
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.top_menu, menu)
+//        return true
+//    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRemindersActiveBinding.inflate(inflater, container, false)
