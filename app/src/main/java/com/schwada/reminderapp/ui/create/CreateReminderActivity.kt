@@ -42,6 +42,8 @@ class CreateReminderActivity : AppCompatActivity() {
         ).get(CreateReminderViewModel::class.java)
 
 
+        Log.i("testing", intent.getLongExtra("reminderId", 0).toString())
+
         val pickTimeBtn: TextView = findViewById(R.id.timeTextField)
         pickTimeBtn.setOnClickListener {
             val c = Calendar.getInstance()

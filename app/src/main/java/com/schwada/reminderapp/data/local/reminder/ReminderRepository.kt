@@ -19,7 +19,10 @@ class ReminderRepository(private val reminderDao: ReminderDao) {
         return reminderDao.getReminderById(reminderId)
     }
 
-
+    @WorkerThread
+    suspend fun deleteReminder(reminder: Reminder){
+        reminderDao.deleteReminder(reminder)
+    }
 
 
 

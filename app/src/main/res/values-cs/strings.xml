@@ -3,7 +3,8 @@
     <string name="app_name">Připomínky</string>
     <string name="title_home">Aktvní</string>
     <string name="title_dashboard">Archiv</string>
-    <string name="title_create">Nová připomínka</string>
+    <string name="title_create">Připomínka</string>
+    <string name="topmenu_close">Zrušit</string>
     <string name="reminderSaveBtn">Uložit</string>
     <string name="ReminderNameLabel">Jméno</string>
     <string name="ReminderTimeHint">Vyberte Čas</string>
@@ -18,4 +19,5 @@
     <string name="ReminderError">Něco se pokazilo</string>
     <string name="ReminderErrorDatePast">Čas nemůže být v minulost</string>
     <string name="ReminderErrorDateMissing">Zadaný čas je buď nesprávný nebo chybí</string>
+    <string name="title_delete">Smazat</string>
 </resources>

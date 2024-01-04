@@ -1,6 +1,7 @@
 package com.schwada.reminderapp.data.local.reminder
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -20,6 +21,7 @@ interface ReminderDao {
 
     @Query("SELECT * FROM reminders WHERE id = :reminderId")
     suspend fun getReminderById(reminderId: Long): Reminder?
-
+    @Delete
+    suspend fun deleteReminder(reminder: Reminder)
 
 }

@@ -3,7 +3,8 @@
     <string name="app_name">Reminders</string>
     <string name="title_home">Active</string>
     <string name="title_dashboard">Archive</string>
-    <string name="title_create">Create Reminder</string>
+    <string name="title_create">Reminder</string>
+    <string name="topmenu_close">Close</string>
     <string name="reminderSaveBtn">Save</string>
     <string name="ReminderNameLabel">Name</string>
     <string name="ReminderTimeHint">Enter Time</string>
@@ -18,4 +19,5 @@
     <string name="ReminderError">Something went wrong</string>
     <string name="ReminderErrorDatePast">Date cannot be in the past</string>
     <string name="ReminderErrorDateMissing">The date is either missing, or incorrect</string>
+    <string name="title_delete">Delete</string>
 </resources>

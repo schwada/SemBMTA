@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.schwada.reminderapp.data.local.reminder.Reminder
 import com.schwada.reminderapp.data.local.reminder.ReminderRepository
-import com.schwada.reminderapp.ui.create.CreateReminderViewModel
+import kotlinx.coroutines.launch
 
 class RemindersActiveViewModel(private val reminderRepository: ReminderRepository) : ViewModel() {
 
@@ -23,6 +24,14 @@ class RemindersActiveViewModel(private val reminderRepository: ReminderRepositor
 
     fun setEditMode(isEditMode: Boolean) {
         _editMode.value = isEditMode
+    }
+
+    fun deleteReminders() = viewModelScope.launch{
+        val reminders = activeReminders.value?.filter { it.isSelected }
+        for (reminder in reminders!!) {
+            reminderRepository.deleteReminder(reminder)
+        }
+        setEditMode(false)
     }
 
 }
