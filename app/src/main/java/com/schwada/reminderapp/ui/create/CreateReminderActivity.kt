@@ -1,7 +1,12 @@
 package com.schwada.reminderapp.ui.create
 
+import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.DatePickerDialog
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +25,9 @@ import com.schwada.reminderapp.data.local.reminder.Reminder
 import com.schwada.reminderapp.data.local.reminder.ReminderRepository
 import java.lang.Exception
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.util.Date
 import java.util.Locale
 
@@ -34,6 +42,8 @@ class CreateReminderActivity : AppCompatActivity() {
 //    }
 
 
+
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_reminder)
@@ -76,21 +86,21 @@ class CreateReminderActivity : AppCompatActivity() {
         val radioGroup: RadioGroup = findViewById(R.id.notifyRadioGroup)
         radioGroup.setOnCheckedChangeListener { group, checkedId -> selectedRadioButton = findViewById(checkedId)}
 
-        val editedReminder: Long = intent.getLongExtra("reminderId", -1);
+        val editedReminder: Long = intent.getLongExtra("reminderId", -1)
         if(editedReminder.toInt() != -1) {
-            nameTextField.setText(intent.getStringExtra("reminderTitle"));
-            descTextField.setText(intent.getStringExtra("reminderDesc"));
-            val date = Date(intent.getLongExtra("reminderDate", -1));
+            nameTextField.setText(intent.getStringExtra("reminderTitle"))
+            descTextField.setText(intent.getStringExtra("reminderDesc"))
+            val date = Date(intent.getLongExtra("reminderDate", -1))
             pickDateBtn.setText(SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date))
             pickTimeBtn.setText(SimpleDateFormat("HH:mm", Locale.getDefault()).format(date))
-            radioGroup.check(if(intent.getBooleanExtra("reminderNotify", true)) R.id.notifyAlarmRadio else R.id.notifyNofiticationRadio);
+            radioGroup.check(if(intent.getBooleanExtra("reminderNotify", true)) R.id.notifyAlarmRadio else R.id.notifyNofiticationRadio)
         }
 
         saveButton.setOnClickListener {
 
             val title = nameTextField.text.toString().trim()
             val description = descTextField.text.toString().trim()
-            val date = try { SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(pickDateBtn.text.toString() + " " + pickTimeBtn.text.toString())}catch (e: Exception) {null};
+            val date = try { SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(pickDateBtn.text.toString() + " " + pickTimeBtn.text.toString())}catch (e: Exception) {null}
 
             // validation
             if(title.isEmpty()) { nameTextField.error = getString(R.string.ReminderFieldMissing); return@setOnClickListener; }
@@ -102,7 +112,7 @@ class CreateReminderActivity : AppCompatActivity() {
             if(date == null) { Toast.makeText(this,getString(R.string.ReminderErrorDateMissing), Toast.LENGTH_SHORT).show(); return@setOnClickListener; }
             if(date.time < System.currentTimeMillis()) { Toast.makeText(this,getString(R.string.ReminderErrorDatePast), Toast.LENGTH_SHORT).show(); return@setOnClickListener; }
 
-            Log.i("CreateReminderActivity", "Passed validation");
+            Log.i("CreateReminderActivity", "Passed validation")
             val newReminder = Reminder(
                 title = title,
                 description = description,
@@ -113,6 +123,26 @@ class CreateReminderActivity : AppCompatActivity() {
 
             if(editedReminder.toInt() != -1)  newReminder.id = editedReminder
             createReminderViewModel.saveReminder(newReminder)
+
+
+            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val alarmIntent = Intent(this, AlarmReceiver::class.java).apply {
+                putExtra("EXTRA_MESSAGE", "testingk")
+            }
+
+
+
+
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                (ZonedDateTime.ofInstant(Instant.ofEpochMilli(date.time), ZoneId.systemDefault())).toEpochSecond() * 1000,
+                PendingIntent.getBroadcast(
+                    this,
+                    newReminder.hashCode(),
+                    alarmIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+            )
 
             finish()
         }

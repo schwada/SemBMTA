@@ -13,11 +13,14 @@ interface ReminderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertReminder(reminder: Reminder)
 
-    @Query("SELECT * FROM reminders") //WHERE archived = 1
+    @Query("SELECT * FROM reminders WHERE archived = 0")
     fun getActiveReminders(): Flow<List<Reminder>>
 
-    @Query("SELECT * FROM reminders WHERE archived = 0")
+    @Query("SELECT * FROM reminders WHERE archived = 1")
     fun getArchivedReminders(): Flow<List<Reminder>>
+
+    @Query("UPDATE reminders SET archived = 1 WHERE id = :reminderId")
+    suspend fun updateArchivedState(reminderId: Long)
 
     @Query("SELECT * FROM reminders WHERE id = :reminderId")
     suspend fun getReminderById(reminderId: Long): Reminder?

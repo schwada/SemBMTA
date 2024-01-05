@@ -1,10 +1,10 @@
-package com.schwada.reminderapp.ui.dashboard
+package com.schwada.reminderapp.ui.reminders_archived
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class RemindersArchivedViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
