@@ -20,6 +20,7 @@ import com.schwada.reminderapp.data.local.reminder.Reminder
 import com.schwada.reminderapp.data.local.reminder.ReminderRepository
 import java.lang.Exception
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class CreateReminderActivity : AppCompatActivity() {
@@ -41,8 +42,6 @@ class CreateReminderActivity : AppCompatActivity() {
             this, CreateReminderViewModelFactory(reminderRepository)
         ).get(CreateReminderViewModel::class.java)
 
-
-        Log.i("testing", intent.getLongExtra("reminderId", 0).toString())
 
         val pickTimeBtn: TextView = findViewById(R.id.timeTextField)
         pickTimeBtn.setOnClickListener {
@@ -77,6 +76,16 @@ class CreateReminderActivity : AppCompatActivity() {
         val radioGroup: RadioGroup = findViewById(R.id.notifyRadioGroup)
         radioGroup.setOnCheckedChangeListener { group, checkedId -> selectedRadioButton = findViewById(checkedId)}
 
+        val editedReminder: Long = intent.getLongExtra("reminderId", -1);
+        if(editedReminder.toInt() != -1) {
+            nameTextField.setText(intent.getStringExtra("reminderTitle"));
+            descTextField.setText(intent.getStringExtra("reminderDesc"));
+            val date = Date(intent.getLongExtra("reminderDate", -1));
+            pickDateBtn.setText(SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date))
+            pickTimeBtn.setText(SimpleDateFormat("HH:mm", Locale.getDefault()).format(date))
+            radioGroup.check(if(intent.getBooleanExtra("reminderNotify", true)) R.id.notifyAlarmRadio else R.id.notifyNofiticationRadio);
+        }
+
         saveButton.setOnClickListener {
 
             val title = nameTextField.text.toString().trim()
@@ -101,7 +110,10 @@ class CreateReminderActivity : AppCompatActivity() {
                 notifyAlarm = selectedRadioButton?.text == "Alarm",
                 archived = false
             )
+
+            if(editedReminder.toInt() != -1)  newReminder.id = editedReminder
             createReminderViewModel.saveReminder(newReminder)
+
             finish()
         }
 

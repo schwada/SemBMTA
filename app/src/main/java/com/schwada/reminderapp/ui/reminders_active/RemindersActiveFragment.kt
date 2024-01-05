@@ -103,6 +103,10 @@ class RemindersActiveFragment : Fragment() {
         val navController = activity?.findNavController(R.id.activity_fragment)
         val bundle = Bundle()
         bundle.putLong("reminderId", reminder.id)
+        bundle.putString("reminderTitle", reminder.title)
+        bundle.putString("reminderDesc", reminder.description)
+        bundle.putBoolean("reminderNotify", reminder.notifyAlarm)
+        bundle.putLong("reminderDate", reminder.date)
         navController?.navigate(R.id.createReminderActivity, bundle);
     }
 
