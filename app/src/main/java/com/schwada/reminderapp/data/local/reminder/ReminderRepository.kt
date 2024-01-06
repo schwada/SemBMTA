@@ -15,6 +15,11 @@ class ReminderRepository(private val reminderDao: ReminderDao) {
     }
 
     @WorkerThread
+    suspend fun setArchived(reminderId: Long) {
+        reminderDao.updateArchivedState(reminderId)
+    }
+
+    @WorkerThread
     suspend fun getReminderById(reminderId: Long): Reminder? {
         return reminderDao.getReminderById(reminderId)
     }

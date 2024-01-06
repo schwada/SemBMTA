@@ -127,11 +127,8 @@ class CreateReminderActivity : AppCompatActivity() {
 
             val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val alarmIntent = Intent(this, AlarmReceiver::class.java).apply {
-                putExtra("EXTRA_MESSAGE", "testingk")
+                putExtra("reminderTitle", "testingk")
             }
-
-
-
 
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,

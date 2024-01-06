@@ -1,13 +1,23 @@
 package com.schwada.reminderapp.ui.reminders_archived
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import com.schwada.reminderapp.data.local.reminder.Reminder
+import com.schwada.reminderapp.data.local.reminder.ReminderRepository
 
-class RemindersArchivedViewModel : ViewModel() {
+class RemindersArchivedViewModel(private val reminderRepository: ReminderRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    val archivedReminders: LiveData<List<Reminder>> = reminderRepository.archivedReminders.asLiveData()
+}
+
+class RemindersArchivedViewModelFactory(private val reminderRepository: ReminderRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(RemindersArchivedViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return RemindersArchivedViewModel(reminderRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
-    val text: LiveData<String> = _text
 }

@@ -19,6 +19,7 @@ class ReminderApp: Application() {
         val channel = NotificationChannel("alarm_id","alarm_name",NotificationManager.IMPORTANCE_HIGH)
         notificationManager.createNotificationChannel(channel)
 
+
         appDatabase = AppDatabase.getDatabase(this)
         reminderRepository = ReminderRepository(appDatabase.reminderDao())
     }

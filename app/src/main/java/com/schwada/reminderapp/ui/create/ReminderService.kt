@@ -7,40 +7,27 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.VibrationEffect
 import android.os.Vibrator
-
-import com.schwada.reminderapp.data.local.AppDatabase
-import com.schwada.reminderapp.data.local.reminder.ReminderDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import android.util.Log
+import androidx.core.app.NotificationCompat
+import com.schwada.reminderapp.R
 
 class ReminderService : Service() {
 
-    private lateinit var reminderDao: ReminderDao
-    private val serviceScope = CoroutineScope(Dispatchers.IO)
-
-    override fun onCreate() {
-        super.onCreate()
-
-        // Initialize the Room database
-        val reminderDatabase = AppDatabase.getDatabase(applicationContext)
-        reminderDao = reminderDatabase.reminderDao()
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val reminderId = intent?.getLongExtra("reminderId", -1)
+        val notification = NotificationCompat.Builder(this, "alarm_id")
+            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true).build()
+        startForeground(1, notification)
+
         val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibrator.vibrate(VibrationEffect.createWaveform(longArrayOf(500, 1000, 500, 1000), -1))
-
-        if (reminderId != null && reminderId.toInt() != -1) setArchived(reminderId)
-
+        vibrator.vibrate(VibrationEffect.createWaveform(longArrayOf(2000, 100, 2000, 100), -1))
+        Log.i("testserviceschwam","working")
         stopSelf()
         return START_NOT_STICKY
     }
 
-    fun setArchived(reminderId: Long) =  serviceScope.launch {
-        reminderDao.updateArchivedState(reminderId)
-    }
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
